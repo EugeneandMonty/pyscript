@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+  <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+</head>
+
+<body>
+<h1 class="test" id="test" style="color: red; text-align: center;">Python code changes color of inner HTML text</h1>
+
+<div style="display: flex; justify-content: center">
+  <button id="case1" type="button" name="button">Color</button>
+</div>
+
+  <py-script>
+
+    from pyodide.ffi import create_proxy
+
+    element = document.getElementsByTagName('h1')[0]
+
+    def change(event):
+      if element.style.color == "red":
+        element.style.color = "green"
+      else: element.style.color = "red"
+
+    change = create_proxy(change)
+    document.getElementById('case1').addEventListener('click', change)
+
+
+  </py-script>
+</body>
+
+</html>
